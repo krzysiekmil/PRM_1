@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PRM_1</string>
+    <string name="add">Dodaj</string>
+    <string name="add_successful">Dodawanie zakończone pozytywnie</string>
+    <string name="save">Zapisz</string>
+</resources>
