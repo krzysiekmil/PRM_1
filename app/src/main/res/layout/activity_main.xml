@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+<!--    <include-->
+<!--        android:id="@+id/toolbar"-->
+<!--        layout="@layout/toolbar"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginBottom="17dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/linearLayout"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNewEntryButton"
         android:layout_width="wrap_content"
@@ -23,6 +34,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="657dp"
         android:layout_marginStart="1dp"
@@ -38,7 +50,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="91dp" >
+            android:layout_height="91dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -46,6 +58,13 @@
                 android:layout_height="72dp"
                 android:text="TextView" />
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
     </LinearLayout>
 
 

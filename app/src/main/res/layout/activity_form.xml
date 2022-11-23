@@ -6,17 +6,138 @@
     android:layout_height="match_parent"
     tools:context=".FormActivity">
 
-    <Button
-        android:id="@+id/form_saveButton"
-        android:layout_width="197dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="107dp"
-        android:layout_marginTop="640dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginBottom="45dp"
-        android:text="@string/save"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/form_info_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/label_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="296dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/form_label_date" />
+
+            <EditText
+                android:id="@+id/input_date"
+                android:layout_width="355dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="24dp"
+                android:ems="10"
+                android:hint="@string/form_label_date"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                android:id="@+id/label_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="352dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/form_label_value" />
+
+            <EditText
+                android:id="@+id/input_value"
+                android:layout_width="352dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="176dp"
+                android:layout_marginBottom="24dp"
+                android:ems="10"
+                android:hint="@string/form_label_value"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/label_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="352dp"
+                android:text="@string/form_label_place" />
+
+            <EditText
+                android:id="@+id/input_place"
+                android:layout_width="354dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="170dp"
+                android:layout_marginBottom="24dp"
+                android:ems="10"
+                android:hint="@string/form_label_place"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/label_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="357dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/form_label_type" />
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/input_type"
+                android:layout_width="355dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="153dp"
+                android:layout_marginBottom="38dp"
+                android:minHeight="48dp"
+                android:text="@string/form_label_type"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/form_saveButton"
+                android:layout_width="299dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginBottom="48dp"
+                android:text="@string/save" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

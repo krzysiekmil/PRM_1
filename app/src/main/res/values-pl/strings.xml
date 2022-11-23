@@ -4,4 +4,14 @@
     <string name="add">Dodaj</string>
     <string name="add_successful">Dodawanie zakończone pozytywnie</string>
     <string name="save">Zapisz</string>
+    <string name="form_add">Dodaj nowy wpis</string>
+    <string name="form_edit">Edytuj wpis o id:</string>
+    <string name="list">Lista</string>
+    <string name="month_view">Widok miesięczny</string>
+    <string name="form_label_place">Miejsce</string>
+    <string name="form_label_date">Data</string>
+    <string name="form_label_value">Wartość</string>
+    <string name="form_label_type">Rodzaj</string>
+    <string name="form_info_add">Dodaj nowy wydatek</string>
+    <string name="form_info_edit">Edytuj wydatek</string>
 </resources>

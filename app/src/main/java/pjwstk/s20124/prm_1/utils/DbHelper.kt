@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
 
-internal class DbHelper(context: Context) : SQLiteOpenHelper(context, "BookLibrary.db", null, 1) {
+class DbHelper(context: Context) : SQLiteOpenHelper(context, "BookLibrary.db", null, 1) {
     private val TABLE_NAME = "my_library"
     private val COLUMN_ID = "_id"
     private val COLUMN_TITLE = "book_title"
