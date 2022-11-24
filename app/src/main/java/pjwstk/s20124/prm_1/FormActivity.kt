@@ -2,21 +2,21 @@ package pjwstk.s20124.prm_1
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TextView
-import com.google.android.material.datepicker.MaterialDatePicker
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import org.jetbrains.annotations.NotNull
 import pjwstk.s20124.prm_1.utils.DbHelper
 import java.util.*
 
+
 class FormActivity : AppCompatActivity() {
     private lateinit var submitButton: Button
     private lateinit var infoText: TextView
+    private lateinit var linearLayout: LinearLayout
     private val db = DbHelper(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,16 +80,32 @@ class FormActivity : AppCompatActivity() {
 
     }
 
-    fun validateForm(viewGroup: ViewGroup){
+    private fun isValid(viewGroup: ViewGroup): Boolean {
+        val count = viewGroup.childCount
+        for (i in 0 until count) {
+            val view: View = viewGroup.getChildAt(i)
+            if (view is ViewGroup) isValid(view) else if (view is EditText) {
+                if (view.text.toString().trim { it <= ' ' } == "") {
+                    view.error = "Required!"
+                    return false
+                }
+            }
+        }
 
+        return true
     }
 
     private fun initSubmitButton () {
-
+        linearLayout = findViewById(R.id.form_linearLayout)
         submitButton = findViewById(R.id.form_saveButton)
+
         submitButton.setOnClickListener {
-            Snackbar.make(it, R.string.add_successful, Snackbar.LENGTH_LONG).show()
-            finish()
+            if (!isValid(linearLayout)){
+                Snackbar.make(it, R.string.form_required_error, Snackbar.LENGTH_LONG).show()
+            }
+            else{
+                finish()
+            }
         }
     }
 

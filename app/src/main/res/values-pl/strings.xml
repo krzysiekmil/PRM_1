@@ -14,4 +14,5 @@
     <string name="form_label_type">Rodzaj</string>
     <string name="form_info_add">Dodaj nowy wydatek</string>
     <string name="form_info_edit">Edytuj wydatek</string>
+    <string name="form_required_error">Wszystkie pola są wymagane</string>
 </resources>

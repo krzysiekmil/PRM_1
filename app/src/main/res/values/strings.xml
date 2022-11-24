@@ -13,4 +13,5 @@
     <string name="form_label_type">Type</string>
     <string name="form_info_add">Please add new expense</string>
     <string name="form_info_edit">Edit expense</string>
+    <string name="form_required_error">All fields are required</string>
 </resources>
