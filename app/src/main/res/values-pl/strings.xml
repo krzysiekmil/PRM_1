@@ -15,4 +15,11 @@
     <string name="form_info_add">Dodaj nowy wydatek</string>
     <string name="form_info_edit">Edytuj wydatek</string>
     <string name="form_required_error">Wszystkie pola są wymagane</string>
+    <string name="share">Udostępnij</string>
+    <string name="dialog_remove_title">Uwaga</string>
+    <string name="dialog_remove_text">"Czy chcesz usunąć pozycje z id: "</string>
+    <string name="yes">Tak</string>
+    <string name="No">No</string>
+    <string name="db_insert_success">Dodano wpis :)</string>
+    <string name="db_update_sucess">Edytowano wpis :)</string>
 </resources>
