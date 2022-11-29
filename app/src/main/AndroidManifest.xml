@@ -8,9 +8,15 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/balance_view"
         android:supportsRtl="true"
         android:theme="@style/Theme.PRM_1">
+
+        <provider
+            android:authorities="pjwstk.s20124.prm_1.providers"
+            android:enabled="true"
+            android:exported="true"
+            android:name=".providers.DataProvider"/>
         <activity
             android:name=".FormActivity"
             android:parentActivityName=".MainActivity"

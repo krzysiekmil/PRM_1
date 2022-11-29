@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="name">name</attr>
-    <attr name="place">place</attr>
-    <attr name="value">value</attr>
-    <attr name="type">type</attr>
+    <string-array name="form">
+        <item>input_date</item>
+        <item>input_value</item>
+        <item>input_place</item>
+        <item>input_type</item>
+    </string-array>
 </resources>

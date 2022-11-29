@@ -21,4 +21,9 @@
     <string name="No">No</string>
     <string name="db_insert_success">Added Successfully!</string>
     <string name="db_update_sucess">Updated Successfully!</string>
+    <string name="list_monthValue">Current month balance:</string>
+    <string name="balance_view">Finanse Manager</string>
+    <string name="month_chart_text">Month balance chart</string>
+    <string name="chart_line">Expenses</string>
+    <string name="chart_data_not_availble">Data not Available</string>
 </resources>

@@ -1,58 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/expense_row_view"
+    style="@style/Widget.Material3.CardView.Elevated"
+    android:id="@+id/cv"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    android:layout_margin="2dp"
+    app:cardUseCompatPadding="true">
 
-    <TextView android:id="@+id/expense_id"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        />
-    <TextView android:id="@+id/expense_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/expense_id"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp">
 
-    <TextView android:id="@+id/expense_place"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/expense_id"
-        app:layout_constraintTop_toBottomOf="@+id/expense_date"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp"
-        />
+            <ImageView
+                android:id="@+id/iconImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:contentDescription="@string/month_view"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:src="@drawable/ic_baseline_attach_money_24" />
 
-    <TextView android:id="@+id/expense_value"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/expense_id"
-        app:layout_constraintTop_toBottomOf="@+id/expense_place"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp"
-        />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
 
-    <TextView android:id="@+id/expense_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/expense_id"
-        app:layout_constraintTop_toBottomOf="@+id/expense_value"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="16sp" />
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/iconImageView"
+                android:minWidth="16sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/expense_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/expense_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14sp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/linearLayout"
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/expense_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2sp"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/expense_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

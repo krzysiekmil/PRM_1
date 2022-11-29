@@ -2,24 +2,21 @@ package pjwstk.s20124.prm_1
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Im
-import android.util.JsonToken
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.serialization.json.Json
-import org.jetbrains.annotations.NotNull
-import org.json.JSONTokener
+import com.google.android.material.textfield.TextInputLayout
 import pjwstk.s20124.prm_1.data.UserExpense
 import pjwstk.s20124.prm_1.viewModel.UserExpenseViewModel
 import pjwstk.s20124.prm_1.viewModel.UserExpenseViewModelFactory
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
@@ -34,7 +31,12 @@ class FormActivity : AppCompatActivity() {
     private lateinit var linearLayout: LinearLayout
     private lateinit var userExpense: UserExpense
 
-    private val viewModel:UserExpenseViewModel by lazy {ViewModelProvider(this, UserExpenseViewModelFactory((application as UserExpenseApplication).repository))[UserExpenseViewModel::class.java]}
+    private val viewModel: UserExpenseViewModel by lazy {
+        ViewModelProvider(
+            this,
+            UserExpenseViewModelFactory((application as UserExpenseApplication))
+        )[UserExpenseViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,14 +48,14 @@ class FormActivity : AppCompatActivity() {
     }
 
     private fun initActivityState() {
-        val id = intent.getIntExtra(AppConstants.ID, 0);
+        val id = intent.getIntExtra(AppConstants.ID, 0)
         infoText = findViewById(R.id.form_info_text)
 
         if (id > 0) {
             infoText.text = getString(R.string.form_info_edit)
             userExpense = intent.getSerializableExtra(AppConstants.DATA, UserExpense::class.java)!!
             title = getString(R.string.form_edit) + userExpense.id
-                    initFormValue(userExpense)
+            initFormValue(userExpense)
         } else {
             title = getString(R.string.form_add)
             infoText.text = getString(R.string.form_info_add)
@@ -76,41 +78,44 @@ class FormActivity : AppCompatActivity() {
         datePicker.setOnClickListener { openDatePicker(datePicker) }
     }
 
-    @Suppress("NAME_SHADOWING")
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SimpleDateFormat")
     private fun openDatePicker(dataPicker: TextView) {
-        val year: Int
-        val month: Int
-        val day: Int
 
-        val calendar = Calendar.getInstance()
-        year = calendar.get(Calendar.YEAR)
-        month = calendar.get(Calendar.MONTH)
-        day = calendar.get(Calendar.DAY_OF_MONTH)
-        calendar.time = Date()
+        val picker = MaterialDatePicker.Builder
+            .datePicker()
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
 
-        val datePickerDialog = DatePickerDialog(
-            this,
-            { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
-                dataPicker.text = "$dayOfMonth/$month/$year"
-            }, year, month, day
-        )
+        picker.addOnPositiveButtonClickListener {
+            val date = Date(Timestamp(it).time)
+            val df = SimpleDateFormat(AppConstants.DISPLAY_FORMAT)
+            dataPicker.text = df.format(date)
+        }
 
-        datePickerDialog.show();
+        picker.show(supportFragmentManager, null)
 
 
     }
 
     private fun isValid(viewGroup: ViewGroup): Boolean {
+
         val count = viewGroup.childCount
         for (i in 0 until count) {
             val view: View = viewGroup.getChildAt(i)
-            if (view is ViewGroup) isValid(view) else if (view is EditText) {
-                if (view.text.toString().trim { it <= ' ' } == "") {
-                    view.error = "Required!"
-                    return false
-                }
+            if (view is TextInputLayout && !validRequired(view)) {
+                return false
             }
+        }
+
+        return true
+    }
+
+    private fun validRequired(edit: TextInputLayout?): Boolean {
+        if (edit?.editText?.text.toString().trim { it <= ' ' } == "") {
+            edit?.error = "Required!"
+            return false
+        } else {
+            edit?.error = null
         }
 
         return true
@@ -124,18 +129,18 @@ class FormActivity : AppCompatActivity() {
         submitButton.setOnClickListener {
             if (isValid(linearLayout)) {
                 saveForm()
-                setResult(Activity.RESULT_OK);
-                finish();
+                setResult(Activity.RESULT_OK)
+                finish()
             } else {
                 Snackbar.make(it, R.string.form_required_error, Snackbar.LENGTH_LONG).show()
             }
         }
 
         shareButton.setOnClickListener {
-            if (!isValid(linearLayout)){
+            if (!isValid(linearLayout)) {
                 return@setOnClickListener
             }
-            val intent = Intent();
+            val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(Intent.EXTRA_TEXT, prepareExpenseFromForm().toString())
             intent.type = "text/plain"
@@ -144,14 +149,13 @@ class FormActivity : AppCompatActivity() {
 
     }
 
-    private fun saveForm(){
-        if(this::userExpense.isInitialized) {
-            val edit = prepareExpenseFromForm();
+    private fun saveForm() {
+        if (this::userExpense.isInitialized) {
+            val edit = prepareExpenseFromForm()
             edit.id = userExpense.id
             viewModel.update(edit)
             Toast.makeText(this, getString(R.string.db_update_sucess), Toast.LENGTH_SHORT).show()
-        }
-        else {
+        } else {
             viewModel.insert(prepareExpenseFromForm())
             Toast.makeText(this, getString(R.string.db_insert_success), Toast.LENGTH_SHORT).show()
         }
@@ -164,7 +168,7 @@ class FormActivity : AppCompatActivity() {
         val value = findViewById<TextView>(R.id.input_value).text.toString().toDouble()
         val place = findViewById<TextView>(R.id.input_place).text.toString()
         val type = findViewById<TextView>(R.id.input_type).text.toString()
-        return UserExpense(date, place, value, type);
+        return UserExpense(date, place, value, type)
     }
 
 

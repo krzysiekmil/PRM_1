@@ -18,6 +18,7 @@ import pjwstk.s20124.prm_1.repository.UserExpenseDao
 @TypeConverters(UserExpenseConverters::class)
 abstract class UserExpenseDatabase : RoomDatabase() {
 
+
     abstract fun userExpenseDao(): UserExpenseDao
 
     companion object {

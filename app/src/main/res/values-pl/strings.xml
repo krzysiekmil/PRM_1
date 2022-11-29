@@ -22,4 +22,9 @@
     <string name="No">No</string>
     <string name="db_insert_success">Dodano wpis :)</string>
     <string name="db_update_sucess">Edytowano wpis :)</string>
+    <string name="list_monthValue">"Saldo bieżącego miesiąca: "</string>
+    <string name="balance_view">Manager Finansowy</string>
+    <string name="month_chart_text">Wykres wydatków miesięcznych</string>
+    <string name="chart_line">Wydatki</string>
+    <string name="chart_data_not_availble">Brak danych</string>
 </resources>

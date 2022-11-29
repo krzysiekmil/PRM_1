@@ -4,4 +4,5 @@ object AppConstants {
     const val ID = "id"
     const val DATA = "data"
     const val DISPLAY_FORMAT = "dd/MM/yyyy"
+    const val BALANCE_DATE_FORMAT = "MMMM, yyyy"
 }
