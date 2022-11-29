@@ -60,14 +60,14 @@ class MainActivity : AppCompatActivity(), RowClickListener {
             val monthExpense: List<UserExpense> = it.filter { userExpense ->
                 userExpense.date.after(beginRange) && userExpense.date.before(endRange)
             }
-            findViewById<TextView>(R.id.month_ballance).text = getString(R.string.list_monthValue) + monthExpense.sumOf { it.value }
-            findViewById<TextView>(R.id.month_date).text = SimpleDateFormat(AppConstants.BALANCE_DATE_FORMAT).format(Date())
+            "${getString(R.string.list_monthValue)}${monthExpense.sumOf { it.value }}".also { findViewById<TextView>(R.id.month_ballance).text = it }
+            findViewById<TextView>(R.id.month_date).text = SimpleDateFormat(AppConstants.BALANCE_DATE_FORMAT, Locale.ENGLISH).format(Date())
             findViewById<ImageView>(R.id.month_Icon).setColorFilter(getColor(androidx.appcompat.R.color.primary_dark_material_dark))
             recyclerViewAdapter.setListData(ArrayList(it))
             recyclerViewAdapter.notifyDataSetChanged()
         }
         initAddButton()
-//        initDataProvider()
+        initDataProvider()
 
 
 
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), RowClickListener {
 
     private fun initDataProvider() {
         dataProvider = DataProvider()
-//        dataProvider.viewModel = viewModel
+        dataProvider.viewModel = viewModel
     }
 
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
